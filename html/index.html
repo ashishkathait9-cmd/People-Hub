@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PeopleHub | User Management</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="app-layout">
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-icon">P</div>
+                <span>PeopleHub</span>
+            </div>
+            <p class="sidebar-label">WORKSPACE</p>
+            <nav class="navigation">
+                <a href="#" class="nav-link active">
+                    <span>▦</span> Dashboard
+                </a>
+                <a href="#users-section" class="nav-link">
+                    <span>♙</span> Users
+                </a> </nav>
+            <div class="sidebar-bottom">
+                <div class="profile-avatar">A</div>
+                <div>
+                    <strong>Admin</strong>
+                    <p>Workspace owner</p>
+                </div>
+            </div></aside>
+        <main class="main-content">
+            <header class="topbar">
+                <div>
+                    <p class="eyebrow">WORKSPACE / USERS</p>
+                    <h1>User Management</h1>
+                    <p class="subtitle">
+                        Manage your users from one place.
+                    </p>
+                </div>
+                <div class="admin-badge">
+                    <span class="status-dot"></span>
+                    Admin panel
+                </div>
+                <button id="themeToggle" class="theme-toggle">🌙 Dark Mode </button>
+            </header>
+            <section class="welcome-banner">
+                <div>
+                    <p class="banner-label">PEOPLEHUB DASHBOARD</p>
+                    <h2>Manage your people. Simplify your work.</h2>
+                    <p>
+                        Add, search, update and manage user information.
+                    </p>
+                </div>
+                <div class="banner-icon">♙</div>
+            </section>
+            <section class="stats-grid">
+                <article class="stat-card">
+                    <div class="stat-top">
+                        <span>Users in view</span>
+                        <span class="stat-icon purple">♙</span>
+                    </div>
+                    <p id="userCount" class="stat-number">Users found: 0</p>
+                    <p class="stat-description">
+                        Updates with your search
+                    </p>
+                </article>
+                <article class="stat-card">
+                    <div class="stat-top">
+                       <span>Total Users</span>
+                        <span class="stat-icon blue">▤</span>
+                    </div>
+                    <p id="totalUsers" class="stat-number">0</p>
+                    <p class="stat-description">
+                        Names, emails and locations
+                    </p></article>
+                <article class="stat-card">
+                    <div class="stat-top">
+                        <span>Actions</span>
+                        <span class="stat-icon green">✓</span>
+                    </div>
+                    <p class="stat-number">CRUD enabled</p>
+                    <p class="stat-description">
+                        Create, read, update and delete
+                    </p> </article></section>
+            <section class="content-grid">
+                <section class="panel form-panel">
+                    <div class="section-heading">
+                        <div>
+                            <p class="eyebrow">USER DETAILS</p>
+                            <h2>Add a user</h2>
+                        </div>
+                        <span class="heading-icon">＋</span>
+                    </div>
+                    <p class="section-description">
+                        Enter the details to create a user record.
+                    </p>
+                    <form id="userform" class="user-form">
+                        <div class="form-field">
+                            <label for="name">Full name</label>
+                            <input
+                                id="name"
+                                type="text"
+                                placeholder="e.g. Rahul Sharma">
+                        </div>
+                        <div class="form-field">
+                            <label for="email">Email address</label>
+                            <input
+                                id="email"
+                                type="email"
+                                placeholder="e.g. rahul@example.com">
+                  </div>
+                        <button id="btn" type="submit" class="primary-btn">
+                            + Add user
+                        </button>
+                    </form>
+                    <form id="editForm" class="edit-form" style="display: none;">
+                        <div class="section-heading">
+                            <h2>Edit user</h2>
+                        </div>
+                        <div class="form-field">
+                            <label for="editName">Full name</label>
+                            <input
+                                type="text"
+                                id="editName"
+                                placeholder="Enter name">
+                        </div>
+                        <div class="form-field">
+                            <label for="editEmail">Email address</label>
+                            <input
+                                type="email"
+                                id="editEmail"
+                                placeholder="Enter email">
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="primary-btn">
+                                Update user
+                            </button>
+                            <button
+                                type="button"
+                                id="cancelEdit"
+                                class="secondary-btn">
+                                Cancel
+                            </button>
+                        </div>
+                    </form>
+                    <div id="message" class="message" aria-live="polite"></div>
+                </section>
+                <section class="panel directory-panel" id="users-section">
+                    <div class="section-heading">
+                        <div>
+                            <p class="eyebrow">DIRECTORY</p>
+                            <h2>All users</h2>
+                        </div>
+                        <span class="directory-icon">▤</span>
+                    </div>
+                    <p class="section-description">
+                        Find and manage your user records.
+                    </p>
+                    <div class="search-box">
+                        <span>⌕</span>
+                        <input
+                            id="searchInput" type="text" placeholder="Search by name, email or city..."
+                            aria-label="Search users">
+                    </div>
+                    <select id="sortUsers">
+                    <option value="default">Default Order</option>
+                    <option value="az">Name A-Z</option>
+                    <option value="za">Name Z-A</option>
+                    </select>
+                    <button id="exportCSV" type="button">Export CSV</button>
+                    <p id="searchMessage" class="search-message"></p>
+                    <div class="bulk-actions">
+                    <button id="deleteSelected" type="button">
+                    Delete Selected
+                    </button>
+                    <span id="selectedCount">0 selected</span>
+                    </div> 
+                    <p id="loading" class="loading-message"></p>
+                    <div id="container" class="user-list"></div>
+                    <div id="pagination"></div>
+                </section>
+            </section>
+            <section class="stats-container">
+    <div class="stats-card">
+        <h3>Total Users</h3>
+        <p id="statTotalUsers">0</p>
+    </div>
+    <div class="stats-card">
+        <h3>Filtered Users</h3>
+        <p id="statFilteredUsers">0</p>
+    </div>
+    <div class="stats-card">
+        <h3>Current Page</h3>
+        <p id="statCurrentPage">0</p>
+    </div>
+    <div class="stats-card">
+        <h3>Selected Users</h3>
+        <p id="statSelectedUsers">0</p>
+    </div>
+</section>
+            <footer class="footer">
+                <span>PeopleHub · User Management Dashboard</span>
+                <span>Built with HTML, CSS & JavaScript</span>
+            </footer>
+        </main>
+    </div>
+    <div id="toast"class="toast"></div>
+<script type="module" src="../js/main.js"></script>
+</body>
+</html>
